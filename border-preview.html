@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border Preview</title>
+    <style>
+        *{
+            margin: auto;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(49, 49, 63);
+            position: relative;
+        }
+        input[type=range]{
+            position: absolute;
+        }
+        p{
+            position: absolute;
+            font-weight: 900;
+            font-size: larger;
+            color: rgb(255, 255, 255);
+            
+        }
+        button{
+            position: absolute;
+            top: 2500%;
+            left: 50px;
+            right: 50px;
+        }
+        
+        #preview-square{
+            position: absolute;
+            top: 75px;
+            left: 50px;
+            right: 50px;
+            height: 320px;
+            width: 320px;
+            background-color: #8a8a8a;
+            border: 2px solid black;
+        }
+        #top-left{
+            top: 150%;
+            left: 10%;
+        }
+        #top-right{
+            top: 150%;
+            right: 10%;
+        }
+        #bottom-left{
+            top: 2300%;
+            left: 10%;
+        }
+        #bottom-right{
+            top: 2300%;
+            right: 10%;
+        }
+        /***/
+        #top-left-val{
+            top: 220%;
+            left: 14%;
+        }
+        #top-right-val{
+            top: 220%;
+            right: 14%;
+        }
+        #bottom-left-val{
+            top: 2200%;
+            left: 14%;
+        }
+        #bottom-right-val{
+            top: 2200%;
+            right: 14%;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="range" name="" id="top-left" min="0" max="100" step="5" onclick="change()"> 
+    <p id="top-left-val">50</p>
+    
+    <input type="range" name="" id="top-right" min="0" max="100" step="5" onclick="change()"> 
+    <p id="top-right-val">50</p>
+
+    <div id="preview-square"></div>
+
+    <input type="range" name="" id="bottom-left" min="0" max="100" step="5" onclick="change()"> 
+    <p id="bottom-left-val">50</p>
+
+    <input type="range" name="" id="bottom-right" min="0" max="100" step="5" onclick="change()"> 
+    <p id="bottom-right-val">50</p>
+    
+    <br>
+
+    <button onclick="changeBut()" class="button-porcentage" id="button">px</button>
+
+
+    <script>
+        var unity = "px";
+        change();
+        function changeBut(){
+            var butt = document.getElementById("button");
+            if(butt.innerText == "px"){
+                butt.innerText = "%";
+                unity = "%";
+            }
+            else{
+                butt.innerText = "px";
+                unity = "px";
+            }
+            change();
+        }
+        function change(){
+            document.getElementById("preview-square").style.borderTopLeftRadius = `${document.getElementById("top-left").value}` + unity;
+            document.getElementById("preview-square").style.borderTopRightRadius = `${document.getElementById("top-right").value}` + unity;
+            document.getElementById("preview-square").style.borderBottomLeftRadius = `${document.getElementById("bottom-left").value}` + unity;
+            document.getElementById("preview-square").style.borderBottomRightRadius = `${document.getElementById("bottom-right").value}` + unity;
+
+            document.getElementById("top-left-val").innerText = document.getElementById("top-left").value;
+            document.getElementById("top-right-val").innerText = document.getElementById("top-right").value;
+            
+            document.getElementById("bottom-left-val").innerText = document.getElementById("bottom-left").value;
+            document.getElementById("bottom-right-val").innerText = document.getElementById("bottom-right").value;
+        }
+    </script>
+    
+</body>
+</html>
